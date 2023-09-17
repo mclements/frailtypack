@@ -1,0 +1,6 @@
+*.o
+*~
+*.mod
+frailtypack.Rcheck
+*.so
+*.tar.gz
