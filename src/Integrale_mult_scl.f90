@@ -784,7 +784,7 @@ double precision function MC_Copula_Essai(func,ndim,nsujet_trial,i)
       use var_surrogate, only: random_generator
       
       implicit none
-      double precision ::RO,SX
+      double precision ::RO,SX,unifrand
       integer ::ID
       double precision ::F,V1,V2,S,DLS,RO2
       double precision ::X1,X2!,UNIRAN
@@ -802,8 +802,10 @@ double precision function MC_Copula_Essai(func,ndim,nsujet_trial,i)
           X1=UNIRAN()
           X2=UNIRAN()
       else !on generer avec RANDOM_NUMBER(avec gestion du seed garanti)
-          CALL RANDOM_NUMBER(X1)
-          CALL RANDOM_NUMBER(X2)
+          call rndstart()
+          x1 = unifrand()
+          x2 = unifrand()
+          call rndend()
       endif
 
       IF(ID.NE.1) GO TO 10
